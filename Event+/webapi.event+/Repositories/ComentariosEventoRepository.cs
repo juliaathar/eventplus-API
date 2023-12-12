@@ -143,7 +143,7 @@ namespace webapi.event_.Repositories
             }
         }
 
-        [HttpGet("ListarSomenteExibe")]
+
         public List<ComentariosEvento> ListarSomenteExibe()
         {
 

@@ -1,7 +1,10 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.Azure.CognitiveServices.ContentModerator;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using System.Reflection;
+using static System.Net.WebRequestMethods;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -117,6 +120,18 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod();
         });
 });
+
+//Configuração do serviço de moderação de conteúdo - Azure
+
+builder.Services.AddSingleton(provider => new ContentModeratorClient(
+    new ApiKeyServiceClientCredentials("6b07378d073b48d591a44beae83920fd"))
+{
+    Endpoint = "https://eventmoderator-julia.cognitiveservices.azure.com/"
+}
+);
+
+
+
 
 var app = builder.Build();
 

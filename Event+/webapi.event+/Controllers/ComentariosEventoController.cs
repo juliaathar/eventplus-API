@@ -88,6 +88,20 @@ namespace webapi.event_.Controllers
             }
         }
 
+        [HttpGet("BuscarPorEvento")]
+        public IActionResult GetByEvent(Guid idEvento)
+        {
+            try
+            {
+                return Ok(comentario.BuscarPorEvento(idEvento));
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         [HttpGet("ListarSomenteExibe")]
         public IActionResult GetShow(Guid idUsuario, Guid idEvento)
         {
